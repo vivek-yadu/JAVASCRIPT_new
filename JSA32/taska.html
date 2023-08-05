@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="text" alt="" id="txt1" placeholder="Enter Text" maxLength="">
+        <button onclick="display()">submit</button>
+    </div>
+
+    <script>
+        function display() {
+            let txtField = document.getElementById('txt1')
+            console.log(txtField.value);
+            txtField.value = ''
+            txtField.placeholder = "Get Name";
+            txtField.maxLength = 10
+            txtField.disabled = false
+            txtField.readOnly = true;
+        }
+    </script>
+</body>
+
+</html>

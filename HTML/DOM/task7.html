@@ -1,0 +1,176 @@
+<html lang="EN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border: 1px solid rgb(146, 61, 236);
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        th {
+            background-color: rgb(146, 61, 236);
+            color: white;
+            border: 1px solid white;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        ul {
+            font-size: large;
+        }
+        
+        .green {
+            background-color: rgb(49, 229, 49);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="productData">
+
+    </div>
+
+
+    <button onclick="show()">show</button>
+
+    <script>
+        let data = [{
+            prod: 'Pepsi',
+            price: 15,
+            stock: 20
+        }, {
+            prod: 'Coke',
+            price: 18,
+            stock: 30
+        }, {
+            prod: 'Maggi',
+            price: 10,
+            stock: 35
+        }, {
+            prod: 'Nescafe',
+            price: 40,
+            stock: 10
+        }, {
+            prod: "DairyMilk",
+            price: 30,
+            stock: 12
+        }, {
+            prod: "FritoLays",
+            price: 20,
+            stock: 15
+        }]
+
+
+        function show() {
+            let s1 = showData();
+            let s2 = showFeedback();
+            let ele = document.getElementById('productData')
+            ele.innerHTML = s1 + s2
+        }
+
+        function showData() {
+            let fmap = data.map((st) => {
+
+                let str = `<tr class="tr1">
+                    <td class="td1">${st.prod}</td>
+                    <td class="td1">${st.price}</td>
+                    <td class="td1">${st.stock}</td>`
+                str += '<td class = "td1"><button class="green" onclick = addtocart("' + st.prod + '")>Add to cart</button></td>'
+                str += `</tr>`
+                return str;
+            })
+
+            let header = `<tr><th>Product</th><th>Price</th><th>stock</th> <th></th</tr>`
+            let html = '<table >' + header + fmap.join('') + '</table>'
+
+            return html;
+        }
+
+
+        function showFeedback() {
+            let arr = feedback.map((st) => {
+
+                let str = `<tr class="tr1">
+                    <td class="td1">${st.prod}</td>
+                    <td class="td1">${st.price}</td>
+                    <td class="td1">${st.stock}</td>
+                    <td class = "td1">${st.qty}</td>
+                    <td class = "td1">${st.qty*st.price}</td>
+
+                    `
+                str += '<td class = "td1"><button class="green" onclick=remove("' + st.prop + '") >Remove From cart</button></td>'
+
+                str += `</tr>`
+                return str;
+            })
+
+            let header = `<tr><th>Product</th><th>Price</th><th>stock</th> <th>Qty</th><th>Amount</th><th></th></tr>`
+            let html = '<h1>My Cart<h1>'
+            if (feedback.length == 0) {
+                html += '<h3> No Items has been recieved </h3>';
+            } else {
+
+                let count = feedback.reduce((acc, curr) => {
+                    return acc + curr.qty
+                }, 0)
+                let totalAmount = feedback.reduce((acc, curr) => {
+                    let amount = curr.qty * curr.price
+                    return acc + amount
+                }, 0)
+                html += '<h3> Number of Items :' + count + '</h3>' + '<h3>Billed Amount  ' + totalAmount + " </h3>"
+                html += '<table>' + header + arr.join('') + '</table>';
+
+            }
+            return html;
+        }
+
+        var feedback = [];
+
+        function addtocart(products) {
+            let p1 = feedback.find((st) => {
+                return st.prod == products
+            });
+            if (p1) {
+                p1.qty++
+            } else {
+                let product1 = data.find((ele) => {
+                    return ele.prod == products
+                })
+
+                let item = {
+                    prod: product1.prod,
+                    price: product1.price,
+                    stock: product1.stock,
+                    qty: 1,
+
+                }
+                feedback.push(item)
+            }
+            console.log(feedback);
+            show()
+        };
+
+        function remove(prod) {
+            let index = feedback.find((ele) => {
+                return ele.prod == prod
+            })
+            feedback.splice(index, 1);
+            show()
+        }
+    </script>
+
+</body>
+
+</html>

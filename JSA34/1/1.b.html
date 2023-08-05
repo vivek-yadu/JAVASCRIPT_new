@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" id="cb1"> JavaScript<br>
+    <input type="checkbox" id='cb2'>React<br>
+    <input type="checkbox" id='cb3'>Node<br>
+
+    <button onclick="showChecked()">show Checked Value </button><br>
+    <button onclick="checkAll(true)">checkAll  </button><br>
+    <button onclick="checkAll(false)">unckeck All </button><br>
+    <button onclick="disableAll(false)">Disable All </button><br>
+    <button onclick="disableAll(true)">Enable All </button><br>
+    <script>
+        function showChecked() {
+            let cb1 = document.getElementById('cb1')
+            let cb2 = document.getElementById('cb2')
+            let cd3 = document.getElementById('cb3')
+            console.log('cb1', cb1.checked)
+            console.log('cb2', cb2.checked)
+            console.log('cb3', cb3.checked)
+        }
+
+        function checkAll(bool) {
+            document.getElementById('cb1').checked = bool;
+            document.getElementById('cb2').checked = bool;
+            document.getElementById('cb3').checked = bool;
+        }
+
+        function disableAll(bool) {
+            document.getElementById('cb1').checked = bool;
+            document.getElementById('cb2').checked = bool;
+            document.getElementById('cb3').checked = bool;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: white;
+    }
+    
+    header {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(119, 117, 114);
+    }
+    
+    header div {
+        margin-left: 5%;
+        margin-top: 2%;
+        width: 300px;
+        height: 50px;
+        background-color: rgb(119, 117, 114);
+    }
+    
+    header nav ul {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 5%;
+    }
+    
+    header nav ul li {
+        list-style: none;
+        margin: 30px;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        background-color: rgb(119, 117, 114);
+    }
+    
+    .main-div {
+        background-color: rgb(119, 117, 113);
+        display: flex;
+        flex-direction: column;
+        justify-content: top;
+        align-items: center;
+    }
+    
+    main .type {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+
+    <header>
+        <div class="brand">
+            <h1>MY Resturant</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-div">
+            <h1 style="margin: 10px; color:aliceblue;"><em>Amazing and authentic food, only for you</em> </h1>
+            <p style="margin-top: 10px; font-size:30px; color:aliceblue;"><em>Wide variety of veg and non-veg menu</em></p>
+        </div>
+        <div class="Type">
+            <div style="width: 50%; height:100%; margin-top:20%;">
+                <h2 style="margin: 50px; text-align:center;">Continental</h2>
+                <p style="text-align: center;"><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+            </div>
+            <div style="width: 50%; height:100%; margin-top:20%;">
+                <h2 style="margin: 50px; text-align:center;">chinese</h2>
+                <p style="text-align: center;"><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+            </div>
+            <div style="width: 50%; height:100%; margin-top:20%;">
+                <h2 style="margin: 50px; text-align:center;">Indian</h2>
+                <p style="text-align: center;"><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+            </div>
+
+
+        </div>
+        <button type="submit" style="background-color: rgb(226, 176, 40); color:black; border-radius:2px; height:40px; width:100px; border:hidden;"><b>submit</b></button>
+
+    </main>
+
+</body>
+
+</html>

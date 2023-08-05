@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Persons Data</h2>
+    <div id="data"></div>
+    <button onclick="show(0)">Jack</button>
+    <button onclick="show(1)">Bob</button>
+    <button onclick="show(2)">Mary</button>
+    <button onclick="clearData()">Clear</button>
+    <script>
+        let Persons = [{
+            name: 'Jack',
+            email: 'Jack@email.com',
+            mobile: '902301111'
+        }, {
+            name: 'Bob',
+            email: 'Bob@email.com',
+            mobile: '892342341'
+        }, {
+            name: 'Mary',
+            email: 'Mary@email.com',
+            mobile: '324151525'
+        }];
+
+        function show(idx) {
+            let person = Persons[idx]
+            let element = document.getElementById('data')
+            let str = '<h3>' + person.name + '</h3>'
+            str += '<h3>' + person.email + '</h3>'
+            str += '<h3>' + person.mobile + '</h3>'
+            console.log(str);
+            element.innerHTML = str;
+        }
+
+        function clearData() {
+            let element = document.getElementById('data')
+            element.innerHTML = ''
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    What do you know best <br>
+
+    <input type="radio" name="tech" onclick="check()" value="Javascript1" id='r1'>JavaScript
+
+    <input type="radio" name="tech" onclick="check()" value="React2" id='r2'>React
+
+    <input type="radio" name="tech" onclick="check()" value="Angular3" id="r3"> Angular
+    <div id='1'></div>
+
+    <div id="DD"></div>
+
+    <script>
+        r1.checked = false
+        r2.checked = false
+        r3.checked = false
+
+        let elem = document.getElementById('1')
+
+        function check() {
+            let a = ''
+            if (r1.checked == true) {
+                a = '' + makeDD()
+
+                elem.innerHTML = a
+            } else if (r2.checked == true) {
+                a = "<input type = 'checkBox' >Do you know React Native</input>"
+
+                elem.innerHTML = a
+            } else if (r3.checked == true) {
+                a = '<input type = "radio" >bootstrap</input><input type = "radio">Bootstrap</input>'
+
+                elem.innerHTML = a
+            }
+        }
+
+        let arr = ["select the Angular version", "3", "2", "1"]
+
+        function makeDD() {
+            let arr1 = arr.map((ele) => {
+                let str = `   <option value="volvo">${ele}</option>`
+                return str
+            })
+            let an = `   <select name="cars" id="cars">` + arr1.join('') + ` </select>`
+            return an
+        }
+    </script>
+</body>
+
+</html>

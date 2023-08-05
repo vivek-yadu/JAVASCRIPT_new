@@ -1,0 +1,142 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="form">
+    </div>
+    <!-- <button onclick="addPerson()">add Person</button>
+    <button onclick="removePerson()">Remove Person</button> -->
+    <div id="details">
+
+    </div>
+
+    <script>
+        let newArr = [{
+            name: "Jack",
+            age: 28,
+            city: "London",
+            tech: "Android"
+        }, {
+            name: "Mary",
+            age: 32,
+            city: " Paris",
+            tech: "React"
+        }, {
+            name: "Bob ",
+            age: 35,
+            city: "New York",
+            tech: "Angular"
+        }, {
+            name: "Steve",
+            age: 26,
+            city: "Delhi",
+            tech: "Spring"
+        }]
+
+        addPerson();
+        show();
+
+
+
+        function show() {
+            let arr = newArr.map((e) => {
+                let str = '<tr>'
+                str += '<td>' + e.name + '</td>'
+                str += '<td>' + e.age + '</td>'
+                str += '<td>' + e.city + '</td>'
+                str += '<td>' + e.tech + '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let html = '<table>' + arr.join('') + '</table>'
+            console.log(html)
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+
+        function addPerson() {
+            let str = 'Name: <input type = "text" id ="name"><br>'
+            str += 'Age: <input type = "number" id = "age" ><br>'
+            str += 'City: <input type = "text" id = "city" ><br>'
+            str += 'Technology: <input type = "text" id = "tech" ><br>'
+            str += '<button onclick=\'check()\'>Add New Person </button>'
+            str += '<button onclick=\'remove()\'>remove</button><br>'
+            let div = document.getElementById('form');
+            div.innerHTML = str
+        }
+
+        function addNewPerson() {
+            let st = {}
+            st.name = document.getElementById('name').value
+            st.age = document.getElementById('age').value
+            st.city = document.getElementById('city').value
+            st.tech = document.getElementById('tech').value
+            newArr.push(st);
+            console.log(st)
+            console.log(newArr);
+        }
+
+        function check() {
+            let name = document.getElementById('name').value
+            let idx = newArr.findIndex((st) => {
+                return st.name == name;
+            })
+
+            if (idx >= 0) {
+                alert("This name already exists ")
+            } else {
+                addNewPerson();
+            }
+            show()
+        }
+
+        function remove() {
+            let nam = document.getElementById('name').value
+            let idx = newArr.findIndex((e) => {
+                return e.name == nam
+            })
+
+            if (idx >= 0) {
+                newArr.splice(idx, 1)
+
+            } else {
+                alert("name doesn't found!!!")
+            }
+            show();
+        }
+    </script>
+</body>
+
+</html>

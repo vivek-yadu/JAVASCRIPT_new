@@ -1,0 +1,128 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="frm"></div>
+
+    <div id="Prod">
+
+    </div>
+    <!-- <button onclick="getNewProduct()">Add product</button> -->
+    <script>
+        let product = [{
+            prod: "maggi",
+            qty: 28
+        }, {
+            prod: "Perk",
+            qty: 7
+        }, {
+            prod: "gems",
+            qty: 11
+        }, {
+            prod: "Lindt",
+            qty: 4
+        }, {
+            prod: "Nutties",
+            qty: 20
+        }]
+
+        getNewProduct();
+        show()
+
+        function show() {
+            let prodArr = product.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.prod + '</td><td>' + ele.qty + '</td>'
+                str += '<td><button onclick=\' remove("' + ele.prod + '") \'>Remove</button></td>'
+                str += '<td ><button onclick= \'edit("' + ele.prod + '")\'>Edit</button></td>'
+                str += '</tr>'
+                return str
+            })
+            let html = '<table>' + prodArr.join('') + '</table>'
+            let element = document.getElementById('Prod')
+            element.innerHTML = html
+        }
+
+
+        function getNewProduct() {
+            let str = 'Name: <input type = "text" id ="prod"><br>'
+            str += 'Quantity: <input type = "number" id = "qty" ><br>'
+            str += '<button onclick=\'addNewProd()\'>Add New Product</button><br>'
+            let pp = document.getElementById('frm');
+            pp.innerHTML = str
+        }
+
+        function addNewProd() {
+            let st = {}
+            st.prod = document.getElementById('prod').value
+            st.qty = document.getElementById('qty').value
+            console.log(st);
+            product.push(st)
+            show()
+        }
+
+        function edit(name) {
+            let st = product.find((st1) => {
+                return st1.prod == name
+            })
+            let str = 'Name: <input type = "text" id ="prod" value = "' + st.prod + '"> <br>'
+            str += 'Quantity: <input type = "text" id ="qty" value = "' + st.qty + '" ><br>'
+            str += '<button onclick=\'edit2()\'>Update</button><br>'
+            let div = document.getElementById('frm');
+            div.innerHTML = str
+        }
+
+        function edit2() {
+            let name = document.getElementById('prod').value;
+            let st = product.find((e) => {
+                return e.prod == name
+            })
+            st.prod = document.getElementById('prod').value;
+            st.qty = document.getElementById('qty').value;
+            show();
+        }
+
+        function remove(prod) {
+            let idx = product.findIndex((ele) => {
+                return ele.prod == prod
+            })
+
+            product.splice(idx, 1)
+            show()
+
+        }
+    </script>
+</body>
+
+</html>

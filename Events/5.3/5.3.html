@@ -1,0 +1,278 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <span id="DD"></span><input type="text" id="txt4" onkeyup="nameCityTechStartsWith(this)">
+    <span id='payment'>
+
+    </span>
+
+
+    <div id="table">
+
+    </div>
+
+
+
+
+    <script>
+        let data = [{
+            "name": "Jack",
+            "age": 28,
+            "city": "London",
+            "tech": "Node JS"
+        }, {
+            "name": "Mary",
+            "age": 32,
+            "city": "Mumbai",
+            "tech": "React JS"
+        }, {
+            "name": "Bob",
+            "age": 35,
+            "city": "New York",
+            "tech": "Angular JS"
+        }, {
+            "name": "Steve",
+            "age": 26,
+            "city": "NewDelhi",
+            "tech": "Javascript JS"
+        }, {
+            "name": "Edwards",
+            "age": 27,
+            "city": "Los Angeles",
+            "tech": "Node JS"
+        }, {
+            "name": "Catherine",
+            "age": 31,
+            "city": "Montreal",
+            "tech": "React JS"
+        }, {
+            "name": "Williams",
+            "age": 34,
+            "city": "New York",
+            "tech": "Android"
+        }, {
+            "name": "John",
+            "age": 25,
+            "city": "Moscow",
+            "tech": "Java"
+        }, {
+            "name": "Anna",
+            "age": 33,
+            "city": "Moscow",
+            "tech": "Node JS"
+        }, {
+            "name": "Julia",
+            "age": 29,
+            "city": "New Jersey",
+            "tech": "Android"
+        }]
+
+
+        show()
+
+
+
+        const selectOption = ["nameStartsWith", "cityStartsWith", "techStartsWith", "Present in Name, City, Tech Starts With"]
+
+        function show() {
+            let arr = data.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.age + '</td>'
+                str += '<td>' + ele.city + '</td>'
+                str += '<td>' + ele.tech + '</td>'
+                str += '</tr>'
+                return str
+            })
+            let header = "<th>Name</th><th>Age</th><th>City</th><th>Technology</th>"
+            let html = '<table>' + header + arr.join('') + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+        }
+
+
+        showOption();
+
+        function showOption() {
+            let arr1 = [...selectOption]
+            let dd1 = makeDD('dd1', arr1, '', 'Select Option', 'payChange');
+            let div1 = document.getElementById('DD')
+            div1.innerHTML = dd1
+        }
+        //pay change function 
+
+        function payChange(elem) {
+            let selOpt = elem.value
+            const arr1 = [...selectOption]
+
+            let dd1 = makeDD("dd1", arr1, selOpt, 'Select Payment Method');
+            let json1 = selectOption.find((ele) => {
+                return ele == selOpt
+            })
+
+            let atr
+            if (json1 == "nameStartsWith") {
+                atr = '<input type="text" id="txt1" onkeyup="nameStartsWith(this)" />'
+            } else if (json1 == "cityStartsWith") {
+                atr = '<input type="text" id="txt2" onkeyup="cityStartsWith(this)">'
+            } else if (json1 == "techStartsWith") {
+                atr = '<input type="text" id="txt3" onkeyup="techStartsWith(this)">'
+            } else {
+                atr = ''
+            }
+            let div1 = document.getElementById('payment')
+            div1.innerHTML = atr
+
+        }
+
+        const arrNameCityTech = [...data]
+
+        function nameCityTechStartsWith(elem) {
+
+            let txt = elem.value
+            const list1 = arrName.filter((w1) => {
+                return w1.name.includes(txt) || w1.city.includes(txt) || w1.tech.includes(txt)
+            });
+            const arr1 = list1.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.age + '</td>'
+                str += '<td>' + ele.city + '</td>'
+                str += '<td>' + ele.tech + '</td>'
+                str += '</tr>'
+                return str
+            });
+            let header = "<th>Name</th><th>Age</th><th>City</th><th>Technology</th>"
+            let html = '<table>' + header + arr1.join('') + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+
+        }
+
+
+        //Making DD Funciton 
+        function makeDD(id, data, selectedVal, valOnTop, onchangeFn) {
+            let dataMap = data.map((opt) => {
+                if (opt == selectedVal)
+                    return '<option selected >' + opt + '</option>'
+                else
+                    return '<option>' + opt + '</option>'
+
+            });
+            let first = '<option value = \'\' selected  disabled  >' + valOnTop + '</option>'
+            let ddHtml = '<select id = \'' + id + '\'>';
+            if (onchangeFn != '')
+                ddHtml = '<select id = \'' + id + '\' onchange = \'' + onchangeFn + '(this)\'>';
+            ddHtml += first + dataMap.join('') + '</select>';
+            return ddHtml
+        }
+
+        const arrName = [...data]
+
+        function nameStartsWith(elem) {
+
+            let txt = elem.value
+            const list1 = arrName.filter((w1) => {
+                return w1.name.startsWith(txt)
+            });
+            const arr1 = list1.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.age + '</td>'
+                str += '<td>' + ele.city + '</td>'
+                str += '<td>' + ele.tech + '</td>'
+                str += '</tr>'
+                return str
+            });
+
+            let header = "<th>Name</th><th>Age</th><th>City</th><th>Technology</th>"
+
+            let html = '<table>' + header + arr1.join('') + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+        }
+
+        const arrCity = [...data]
+
+        function cityStartsWith(elem) {
+            let txt = elem.value
+            const list1 = arrCity.filter((w1) => {
+                return w1.city.startsWith(txt)
+            });
+
+            const arr1 = list1.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.age + '</td>'
+                str += '<td>' + ele.city + '</td>'
+                str += '<td>' + ele.tech + '</td>'
+                str += '</tr>'
+                return str
+            });
+
+            let header = "<th>Name</th><th>Age</th><th>City</th><th>Technology</th>"
+            let html = '<table>' + header + arr1.join('') + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+        }
+
+
+
+        const arrTech = [...data]
+
+        function techStartsWith(elem) {
+            let txt = elem.value
+            const list1 = arrTech.filter((w1) => {
+                return w1.tech.startsWith(txt)
+            });
+            const arr1 = list1.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.age + '</td>'
+                str += '<td>' + ele.city + '</td>'
+                str += '<td>' + ele.tech + '</td>'
+                str += '</tr>'
+                return str
+            });
+            let header = "<th>Name</th><th>Age</th><th>City</th><th>Technology</th>"
+
+            let html = '<table>' + header + arr1.join('') + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+        }
+    </script>
+
+
+
+</body>
+
+</html>

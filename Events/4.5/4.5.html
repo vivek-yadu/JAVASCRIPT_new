@@ -1,0 +1,166 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .errMsg {
+            color: red;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    Name:<input type="text" id="txt1" onblur='check1(this)'><br>
+    <div id="d1"></div><br>
+    <br> Age: <input type="text" id="txt2" placeholder="" onblur='check2(this)'>
+    <div id="d2"></div><br>
+
+    <br> City: <input type="text" id="txt3" onblur='check3(this)'>
+    <div id="d3"></div><br>
+
+    <br> Technology: <input type="text" id="txt4" onblur='check4(this)'>
+    <div id="d4"></div><br>
+    <button id="btn1">Submit</button>
+
+
+    <script>
+        let details = [{
+            "name": "Jack",
+            "age": 28,
+            "city": "London",
+            "tech": "Android"
+        }, {
+            "name": "Mary",
+            "age": 32,
+            "city": "Paris",
+            "tech": "React"
+        }, {
+            "name": "Bob",
+            "age": 35,
+            "city": "New York",
+            "tech": "Angular"
+        }, {
+            "name": "Steve",
+            "age": 26,
+            "city": "Delhi",
+            "tech": "Spring"
+        }]
+
+
+
+        let btn = document.getElementById('btn1');
+        btn.disabled = true
+
+
+        function check1(elem) {
+            let txtField = document.getElementById('txt1');
+            let txt = txtField.value;
+            console.log(txt);
+            let nam = details.find((ele) => {
+                return ele.name == txt
+            })
+            if (txt == nam.name) {
+                let errDiv = document.getElementById("d1");
+                errDiv.innerHTML = "Name Already Exists"
+                errDiv.className = "errMsg"
+
+
+            } else {
+                let errDiv = document.getElementById("d1");
+                errDiv.innerHTML = ""
+                errDiv.className = ""
+                btn.disabled = false
+            }
+
+
+        }
+
+
+
+
+        function check2(elem) {
+            let txtField = document.getElementById('txt2');
+            let txt = txtField.value;
+            console.log(txt);
+            let a = txt / 1
+            if (a <= 18) {
+                let errDiv = document.getElementById("d2");
+                errDiv.innerHTML = "Minimum age is 18"
+                errDiv.className = "errMsg"
+
+
+            } else {
+                let errDiv = document.getElementById("d2");
+                errDiv.innerHTML = ""
+                errDiv.className = ""
+
+                btn.disabled = false
+            }
+
+
+        }
+
+        function check3(elem) {
+            let txtField = document.getElementById('txt3');
+            let txt = txtField.value;
+            console.log(txt);
+            let st = details.map((ele) => {
+                return ele.city
+            })
+
+            for (let i = 0; i < st.length; i++) {
+                if (txt != st[i]) {
+                    let errDiv = document.getElementById("d3");
+                    errDiv.innerHTML = "Select city form  London, Paris, Delhi, New York "
+                    errDiv.className = "errMsg"
+
+
+                    btn.disabled = true
+
+                } else {
+                    let errDiv = document.getElementById("d3");
+                    errDiv.innerHTML = ""
+                    errDiv.className = ""
+
+                    btn.disabled = false
+                    break
+                }
+            }
+
+        }
+
+        function check4(elem) {
+            let txtField = document.getElementById('txt4');
+            let txt = txtField.value;
+            console.log(txt);
+            let nam = details.map((ele) => {
+                return ele.tech
+            })
+            console.log(nam);
+            for (let i = 0; i < nam.length; i++) {
+                if (txt != nam[i]) {
+                    let errDiv = document.getElementById("d4");
+                    errDiv.innerHTML = "Select tech form  React, Angular, Spring, Android"
+                    errDiv.className = "errMsg"
+                    btn.disabled = true
+
+                } else {
+                    let errDiv = document.getElementById("d4");
+                    errDiv.innerHTML = ""
+                    errDiv.className = ""
+
+                    btn.disabled = false
+                    break
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

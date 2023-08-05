@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <input type="text" id="txt" placeholder=" no b or B" onkeyup="check(this)">
+    <input type="text" id="ans">
+
+    <script>
+        function check() {
+
+            let getdata = document.getElementById('txt').value
+            let newstr = ''
+            for (let i = 0; i < getdata.length; i++) {
+                if (getdata[i] == 'b') {
+                    newstr += ''
+                } else if (getdata[i] == 'B') {
+                    newstr += ''
+                } else {
+                    newstr += getdata[i]
+                }
+            }
+
+            document.getElementById('ans').value = newstr
+
+        }
+    </script>
+
+</body>
+
+</html>

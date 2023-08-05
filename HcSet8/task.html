@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(194, 238, 142);
+        }
+        
+        main {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: aliceblue;
+        }
+        
+        table {
+            width: 70%;
+            height: 80%;
+        }
+        
+        button {
+            width: 10%;
+            height: 5%;
+            background-color: rgb(70, 167, 231);
+            border: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Food delivery Survey Form </h1>
+    </header>
+    <main>
+
+        <h3>Tell Us About yourself</h3>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="" id="" placeholder="Enter your name"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="" id="" placeholder="Enter your email address "></td>
+            </tr>
+            <tr>
+                <td>What do you do </td>
+                <td><input type="text" name="" id=""></td>
+            </tr>
+            <tr>
+                <td>What is your prefferred time</td>
+                <td style="display: flex;flex-direction: column; justify-content: center;  align-items: start;"><label for=""><input type="radio" name="" id=""> Morning</label>
+                    <label for=""><input type="radio" name="" id=""> Afternoon</label>
+                    <label for=""><input type="radio" name="" id=""> Evening</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Which meal do you order online?
+                    <p>(Select all option that apply)</p>
+                </td>
+                <td style="display: flex; flex-direction: column; justify-content: center; align-items: start   ;"><label for=""><input type="checkbox" name="" id="">Breakfast</label>
+                    <label for=""><input type="checkbox" name="" id=""> Lunch</label>
+                    <label for=""><input type="checkbox" name="" id="">Snacks</label>
+                    <label for=""><input type="checkbox" name="" id="">Dinner</label></td>
+
+            </tr>
+            <tr>
+                <td>Any thig you would like to share </td>
+                <td><textarea name="" id="" cols="30" rows="5"></textarea></td>
+            </tr>
+        </table>
+        <button type="submit">Submit</button>
+    </main>
+</body>
+
+</html>

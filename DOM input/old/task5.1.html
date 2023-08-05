@@ -1,0 +1,289 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div id="button"></div>
+    <div id="products"></div>
+    <div id="form"></div>
+
+
+    <script>
+        let productMaster = [{
+            name: 'Pepsi',
+            category: 'food',
+            buy_price: 15,
+            sell_price: 2
+        }, {
+            name: 'Lux',
+            category: 'Soap',
+            buy_price: 10,
+            sell_price: 20
+        }, {
+            name: 'cake',
+            category: 'food',
+            buy_price: 20,
+            sell_price: 100
+        }, {
+            name: 'colgate',
+            category: 'toothpaste',
+            buy_price: 16,
+            sell_price: 50
+        }, {
+            name: 'head and shoulders',
+            category: 'shampoo',
+            buy_price: 25,
+            sell_price: 100
+        }, {
+            name: '5Star',
+            category: 'food',
+            buy_price: 10,
+            sell_price: 3
+        }, {
+            name: 'Dove',
+            category: 'soap',
+            buy_price: 35,
+            sell_price: 90
+        }, {
+            name: 'pepsodent',
+            category: 'toothpaste',
+            buy_price: 12,
+            sell_price: 69
+        }, {
+            name: 'kurkure',
+            category: 'food',
+            buy_price: 15,
+            sell_price: 30
+        }];
+
+
+        let purchaseMaster = [{
+            name: 'Pepsi',
+            quantity: 10,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'Lux',
+            quantity: 6,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'cake',
+            quantity: 1,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'colgate',
+            quantity: 9,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'head and shoulders',
+            quantity: 7,
+            price: '',
+            value: ''
+
+        }, {
+            name: '5Star',
+            quantity: 10,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'Dove',
+            quantity: 5,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'pepsodent',
+            quantity: 2,
+            price: '',
+            value: ''
+
+        }, {
+            name: 'kurkure',
+            quantity: 9,
+            price: '',
+            value: ''
+
+        }];
+
+
+
+        let arrProd = ['Pepsi', 'Lux', 'cake', 'colgate', 'head and shoulders', '5Star', 'Dove', 'pepsodent', 'kurkure']
+
+
+        let arrCat = ['food', 'toothpaste', 'soap', 'shampoo']
+
+        show();
+
+
+        function show() {
+
+            str = '<button onclick="showProduct()"> Products</button>   <button onclick="newProduct()">New Product</button><button onclick="showPurchase()">Purchase Master</button><button onclick="newPurchase()">New Purchase</button>'
+            let element = document.getElementById('button')
+            element.innerHTML = str
+        }
+
+
+
+        function showProduct() {
+            let newArr = productMaster.map((e) => {
+                let str = '<tr>'
+                str += '<td>' + e.name + '</td>'
+                str += '<td>' + e.category + '</td>'
+                str += '<td>' + e.buy_price + '</td>'
+                str += '<td>' + e.sell_price + '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let head = '<th>Name</th><th>Category</th><th>Buy_price</th><th>sell_price</th>'
+            let s = '<table>' + head + newArr.join('') + '</table>'
+            let element = document.getElementById('products')
+            element.innerHTML = s
+        }
+
+
+
+
+        function newProduct() {
+            let frm = "<h3>Add new Products<h3>"
+            frm += "Name: <input type ='text' id = 'name'><br>"
+            frm += makeCategoryDD('category', arrCat) + '<br>'
+            frm += "Buy Price: <input type = 'text' id = 'buy_price'><br>"
+            frm += "Sell Price : <input type = 'text' id = 'sell_price'><br>"
+            frm += "<button onclick=\'add()\'>Add Product</button>"
+            let div = document.getElementById('products')
+            div.innerHTML = frm
+        }
+
+        function makeCategoryDD(id, arrCat) {
+            let arr1 = arrCat.map((ele) => {
+                return '<option>' + ele + '</option>'
+            })
+            let st = '<option selected disabled>Select Category</option>'
+            let s = '<select id = \'' + id + '\'>' + st + arr1.join('') + '</select>'
+            return s
+        }
+
+        function add() {
+            let st = {}
+            st.name = document.getElementById('name').value
+            st.category = document.getElementById('category').value
+            st.buy_price = document.getElementById('buy_price').value
+            st.sell_price = document.getElementById('sell_price').value
+            arrProd.push(st.name)
+            productMaster.push(st)
+            showProduct();
+        }
+
+
+        function newPurchase() {
+
+            let frm = "<h3>Add new Purchase<h3>"
+            frm += "Name:" + makeCategoryDD('name', arrProd) + '<br>'
+            frm += "Quantity: <input type ='text' id='qty'>"
+            frm += "<button onclick=\'addpurchase()\'>Add Product</button>"
+            let div = document.getElementById('products')
+            div.innerHTML = frm
+        }
+
+        let newAAA = []
+
+        function addpurchase() {
+            let nam = document.getElementById('name').value
+            let st = purchaseMaster.find((ele) => {
+                return ele.name == nam
+            })
+
+
+            let st1 = productMaster.find((ele) => {
+                return ele.name == nam
+            })
+
+            let quant1 = document.getElementById('qty').value;
+            let totalQty = st.quantity + Number(quant1)
+            let val = st1.buy_price * totalQty
+            st.quantity = totalQty
+            st.price = st1.buy_price
+            st.value = val
+            let element = {
+                name: st.name,
+                quantity: totalQty,
+                price: st.price,
+                value: val
+            }
+            newAAA.push(element)
+            showNewPurchase();
+        }
+
+
+
+        function showNewPurchase() {
+            let newArr = purchaseMaster.map((ele) => {
+                str = '<tr>'
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.quantity + '</td>'
+                str += '<td>' + ele.price + '</td>'
+                str += '<td>' + ele.value + '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let header = "<th>Product</th><th>Qauntity</th><th>Price</th><th>value</th>"
+            let html = '<table>' + header + newArr.join('') + '</table>'
+            let div = document.getElementById('products')
+            div.innerHTML = html
+        }
+
+
+        function showPurchase() {
+
+            let newArr = purchaseMaster.map((ele) => {
+                str = '<tr>'
+
+                str += '<tr>'
+                return str
+            })
+
+            let header = "<th>Product</th><th>Qauntity</th><th>Price</th><th>value</th>"
+            let html = '<table>' + header + newArr.join() + '</table>'
+            let div = document.getElementById('products')
+            div.innerHTML = html
+        }
+    </script>
+</body>
+
+</html>

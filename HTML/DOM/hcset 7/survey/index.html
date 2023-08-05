@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <title>freeCodeCamp Survey Form</title>
+</head>
+
+<body>
+
+    <div class="head">
+        <h1 id="title">freeCodeCamp Survey Form</h1>
+
+        <p id="description"><i>Thank you for taking the time to help us improve the platform</i></p>
+
+    </div>
+    <div class="container">
+        <form id="survey-form">
+
+            <fieldset class="form1">
+                <label id="name-label">Name<br><input id="name" type="text" placeholder="Enter your name"  required><br></label>
+                <label id="email-label">Email<br><input id="email" type="email" name ="" placeholder="Enter your Email" required><br></label>
+                <label id="number-label">Age<br><input id="number" min='1' max="100" type = "number" placeholder="Age"><br></label>
+                <label><br>  Which option best describes your current role?<br>
+                    <select  id = "dropdown" >
+                        <option disabled>select current role</option>
+                        <option>Student</option>
+                        <option>Full Time Job</option>
+                        <option>Full Time Learner</option>
+                        <option>Prefer not to say</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+            </fieldset>
+
+
+
+            <fieldset class="form2">
+                <label>Would you recommend freeCodeCamp to a friend?<br></label>
+                <label for="definitely"><input type="radio" id="definitely"name="definitely" value="definitely"/>Definitely<br> </label>
+                <label for="maybe"><input type="radio" id = "maybe" name="maybe" value="maybe"/>Maybe<br></label>
+                <label for="not-sure"><input type="radio" id = "not-sure" name="not-sure" value="not-sure"/>Not sure<br></label>
+
+                <label><br> What is your favorite feature of freeCodeCamp?<br>
+                    <select  id = "dropdown" >
+                        <option disabled>select an Option</option>
+                        <option>Challenges</option>
+                        <option>Projects</option>
+                        <option>Community</option>
+                        <option>Open source</option>
+                        
+                    </select>
+                </label>
+            </fieldset>
+
+
+            <fieldset class="form3">
+                <div>
+                    <label>What would you like to see improved? (Check all that apply)
+                    <label><input type="checkbox" id ="form" value="survey-form"/>Front-end Projects</label>
+                    <label><input type="checkbox" id = "form" value="survey-form"/>Back-end Projects</label>
+                    <label><input type="checkbox" id = "form" value="survey-form"/>Data Visualization</label>
+                    <label><input type="checkbox" id = "form" value="survey-form"/>Challenges</label>
+                    <label><input type="checkbox" id = "form" value="survey-form"/>Open Source Community</label>
+                    </label>
+                    <div>
+            </fieldset>
+
+
+            <label>  Any comments or suggestions? <textarea placeholder="Enter your comment here..." rows="3" cols="30"></textarea><label>
+                <button id = "submit">Submit</button> 
+        </form>
+    </div>
+
+
+</body>
+
+</html>

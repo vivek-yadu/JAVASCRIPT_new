@@ -1,0 +1,436 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        ul {
+            font-size: large;
+        }
+        
+        .indiaColor {
+            color: blue;
+        }
+        
+        .usaColor {
+            color: green;
+        }
+        
+        .franceColor {
+            color: red;
+        }
+        
+        .Blue {
+            background-color: rgb(126, 169, 229);
+        }
+        
+        .Red {
+            background-color: rgb(222, 145, 145);
+        }
+        
+        .Green {
+            background-color: rgb(149, 252, 149);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="peoples">
+
+    </div>
+    <button onclick="showPeople()">show</button>
+    <button onclick="hidePeople()">Hide</button>
+    <button onclick="sortByName()">Sort By Name</button>
+    <button onclick="sortByCountry()"> sort By country </button>
+    <button onclick="sortByAge()">sort By Age</button>
+    <button onclick="sortByCountryAndName()">Sort by country And Name</button>
+    <button onclick="sortByCountryAndAge()">sort by country and Age</button>
+    <button onclick="showPeopleIndia()">INDIAN</button>
+    <button onclick="showPeopleUSA()">American</button>
+    <button onclick="showPeopleFrance()">France</button>
+    <button onclick="StyleByCountry()">Style By Country </button>
+    <button onclick="styleByAge()">Style By Age</button>
+
+    <script>
+        let styleCountry = false;
+        let styleAge = false;
+        let people = [{
+            "name": "Jack",
+            "country": "USA",
+            "age": 35
+        }, {
+            "name": "Amit",
+            "country": "India",
+            "age": 38
+        }, {
+            "name": "Edward",
+            "country": "USA",
+            "age": 41
+        }, {
+            "name": "Vishal",
+            "country": "India",
+            "age": 30
+        }, {
+            "name": "Annie",
+            "country": "USA",
+            "age": 27
+        }, {
+            "name": "Nick",
+            "country": "France",
+            "age": 32
+        }, {
+            "name": "Francis",
+            "country": "France",
+            "age": 44
+        }, {
+            "name": "Preeti",
+            "country": "India",
+            "age": 25
+        }, {
+            "name": "Sophie",
+            "country": "France",
+            "age": 29
+        }, {
+            "name": "Harpreet",
+            "country": "India",
+            "age": 48
+        }, {
+            "name": "Bob",
+            "country": "USA",
+            "age": 21
+        }];
+
+
+        // task 2 -1
+        function showPeople() {
+            let arr1 = people.map((srt) => {
+                let str = `<li class = "${ByCountry(srt)} "><p>${srt.name} <b class="${ByAge(srt)}">${srt.age}</b> ${srt.country} </p></li>`
+                return str
+            }).join('');
+            let html = "<ul>" + arr1 + "</ul>"
+            console.log(html)
+            let element = document.getElementById('peoples');
+            element.innerHTML = html
+        }
+
+        // task 2 -2 
+        function hidePeople() {
+            let element = document.getElementById('peoples')
+            element.innerHTML = ""
+        }
+        // task 2.3
+        function sortByName() {
+            people.sort(inASC)
+            showPeople()
+        }
+
+        function inASC(st1, st2) {
+            return st1.name.localeCompare(st2.name)
+        }
+
+        //task 2.4 
+        function sortByCountry() {
+            people.sort(byCountry)
+
+            function byCountry(a, b) {
+                return a.country.localeCompare(b.country)
+            }
+            showPeople();
+        }
+
+        //task 2.5 
+        function sortByAge() {
+            people.sort(byAge)
+
+            function byAge(a, b) {
+                if (a.age > b.age) {
+                    return 1
+                } else if (a.age < b.age) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }
+
+            showPeople();
+        }
+
+        //task 2.6
+
+        function sortByCountryAndName() {
+            people.sort(country)
+
+            function country(a, b) {
+                return a.country.localeCompare(b.country)
+            }
+            people.sort(byName)
+
+            function byName(a, b) {
+                return a.name.localeCompare(b.name)
+            }
+            showPeople()
+        }
+
+
+        //task2.7
+
+        function sortByCountryAndAge() {
+            people.sort(byCountry)
+
+            function byCountry(a, b) {
+                return a.country.localeCompare(b.country)
+            }
+
+            people.sort(byAge)
+
+            function byAge(a, b) {
+                if (a.age > b.age) {
+                    return 1
+                } else if (a.age < b.age) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }
+
+            showPeople()
+        }
+
+        //task 2.8
+        function showPeopleIndia() {
+            let arr1 = people.map((srt) => {
+
+                if (srt.country == "India") {
+                    let str = `<tr class = "${usingCountry(srt)}">
+                        <td>${srt.name}</td>
+                        <td class="${usingAge(srt)}">${srt.age}</td> 
+                        <td>${srt.country} </td>`
+
+                    str += ' <td><button onclick=\'remove("' + srt.name + '")\'>Remove</button></td>'
+                    str += '<td><button onclick = \'addToOne("' + srt.age + '")\'>add 1 to Age </button></td>'
+                    str += ' </tr>'
+                    return str
+                }
+
+            }).join('');
+            let header = "   <tr> <th onclick=\'sort(0)\'> Name </th> <th onclick=\'sort(1)\'> Age </th> <th onclick=\'sort(2)\'> Country </th><th></th> </tr>"
+
+            let html = "<table>" + header + arr1 + "</table>"
+            console.log(html)
+            let element = document.getElementById('peoples');
+            element.innerHTML = html
+        }
+
+        //task 2.9 
+        function showPeopleUSA() {
+            let arr1 = people.map((srt) => {
+
+                if (srt.country == "USA") {
+                    let str = `<tr class = "${usingCountry(srt)}">
+
+                        <td>${srt.name}</td>
+                        <td class="${usingAge(srt)}">${srt.age}</td> 
+                        <td>${srt.country} </td>`
+
+                    str += ' <td><button onclick=\'remove("' + srt.name + '")\'>Remove</button></td>'
+                    str += '<td><button onclick = \'addToOne("' + srt.age + '")\'>add 1 to Age </button></td>'
+                    str += ' </tr>'
+                    return str
+                }
+
+            }).join('');
+            let header = "   <tr> <th onclick=\'sort(0)\'> Name </th> <th onclick=\'sort(1)\'> Age </th> <th onclick=\'sort(2)\'> Country </th><th></th> </tr>"
+
+            let html = "<table>" + header + arr1 + "</table>"
+            console.log(html)
+            let element = document.getElementById('peoples');
+            element.innerHTML = html
+        }
+
+        //task 2-j
+        function showPeopleFrance() {
+            let arr1 = people.map((srt) => {
+
+                if (srt.country == "France") {
+                    let str = `<tr class = "${usingCountry(srt)}">
+                        <td>${srt.name}</td>
+                        <td class="${usingAge(srt)}">${srt.age}</td> 
+                        <td>${srt.country} </td>`
+
+                    str += ' <td><button onclick=\'remove("' + srt.name + '")\'>Remove</button></td>'
+                    str += '<td><button onclick = \'addToOne("' + srt.age + '")\'>add 1 to Age </button></td>'
+                    str += ' </tr>'
+                    return str
+                }
+
+            }).join('');
+            let header = "   <tr> <th onclick=\'sort(0)\'> Name </th> <th onclick=\'sort(1)\'> Age </th> <th onclick=\'sort(2)\'> Country </th><th></th> </tr>"
+
+            let html = "<table>" + header + arr1 + "</table>"
+            console.log(html)
+            let element = document.getElementById('peoples');
+            element.innerHTML = html
+        }
+
+        //task 2k
+        function ByCountry(a) {
+            if (a.country == "India" && styleCountry) {
+                return 'indiaColor'
+            } else if (a.country == "USA" && styleCountry) {
+                return 'usaColor'
+
+            } else {
+                return 'franceColor'
+            }
+
+        }
+
+        function StyleByCountry() {
+            styleCountry = true;
+            console.log(styleCountry)
+            showPeople()
+        }
+
+        //task 2l
+
+        function ByAge(arg) {
+            if (arg.age > 40 && styleAge) {
+                return 'franceColor'
+            } else if (arg.age <= 40 && arg.age > 30 && styleAge) {
+                return "indiaColor"
+            } else if (arg.age <= 30) {
+                return "usaColor"
+            }
+        }
+
+        function styleByAge() {
+            styleAge = true
+            console.log(styleAge);
+            showPeople();
+        }
+
+        //task 3 
+        function showPeople() {
+            let arr1 = people.map((srt) => {
+                let str = `<tr class = "${usingCountry(srt)}" > 
+                    <td>${srt.name}</td>
+                    <td id = "age" class="${usingAge(srt)}">${srt.age}</td> 
+                    <td>${srt.country} </td>`
+
+
+                str += ' <td><button onclick=\'remove("' + srt.name + '")\'>Remove</button></td>'
+                str += '<td><button onclick =\'addtoAge(' + srt.age + ')\' >add 1 to Age </button></td>'
+
+                str += ' </tr>'
+                return str
+            }).join('');
+
+            let header = "   <tr> <th onclick=\'sort(0)\'> Name </th> <th onclick=\'sort(1)\'> Age </th> <th onclick=\'sort(2)\'> Country </th><th></th> </tr>"
+            let html = "<table>" + header + arr1 + "</table>"
+            console.log(html)
+            let element = document.getElementById('peoples');
+            element.innerHTML = html
+        }
+
+
+        //task 4.1
+        function sort(colno) {
+            if (colno == 0) {
+                people.sort(sortByName)
+            } else if (colno == 1) {
+                people.sort(sortByAge)
+            } else {
+                people.sort(sortByCountry)
+            }
+            showPeople();
+        }
+
+        function sortByCountry(a, b) {
+            return a.country.localeCompare(b.country)
+        }
+
+        function sortByName(a, b) {
+            return a.name.localeCompare(b.name)
+        }
+
+        function sortByAge(a, b) {
+            if (a.age > b.age) {
+                return 1;
+            } else if (a.age < b.age) {
+                return -1;
+            } else {
+                return 0
+            }
+        }
+
+
+        //task 4.2 
+
+
+        function usingCountry(a) {
+            if (a.country == 'India') {
+                return "Blue"
+            } else if (a.country == 'USA') {
+                return "Green"
+            } else if (a.country == 'France') {
+                return "Red"
+            } else
+                return ""
+
+            showPeople()
+        }
+
+        function usingAge(st) {
+            if (st.age > 40) {
+                return 'franceColor'
+            } else if (st.age <= 40 && st.age > 30) {
+                return "indiaColor"
+            } else if (st.age <= 30) {
+                return "usaColor"
+            }
+            showPeople()
+        }
+
+        //task 4.3
+        function remove(name) {
+            let index = people.findIndex((st) => {
+                return st.name == name;
+            });
+            people.splice(index, 1);
+            showPeople();
+        }
+        //task 4.4
+        function addtoAge(n) {
+            let index = people.find((st) => {
+                return st.age == n
+            })
+
+            index.age += 1;
+            showPeople();
+        }
+    </script>
+</body>
+
+</html>

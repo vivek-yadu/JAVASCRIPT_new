@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="frm"></div>
+
+    <div id="Prod">
+
+    </div>
+    <button onclick="getNewProduct()">Add product</button>
+    <script>
+        let product = [{
+            prod: "maggi",
+            qty: 28
+        }, {
+            prod: "Perk",
+            qty: 7
+        }, {
+            prod: "gems",
+            qty: 11
+        }, {
+            prod: "Lindt",
+            qty: 4
+        }, {
+            prod: "Nutties",
+            qty: 20
+        }]
+
+
+        show()
+
+        function show() {
+            let prodArr = product.map((ele) => {
+                let str = '<tr>'
+                str += '<td>' + ele.prod + '</td><td>' + ele.qty + '</td><td><button>Remove</button></td>'
+                str += '</tr>'
+                return str
+            })
+            let html = '<table>' + prodArr.join('') + '</table>'
+            let element = document.getElementById('Prod')
+            element.innerHTML = html
+        }
+
+
+        function getNewProduct() {
+            let str = 'Name: <input type = "text" id ="prod"><br>'
+            str += 'Quantity: <input type = "number" id = "qty" ><br>'
+            str += '<button onclick=\'addNewProd()\'>Add New Product</button><br>'
+            let div = document.getElementById('Prod');
+            div.innerHTML = str
+        }
+
+        function addNewProd() {
+            let st = {}
+            st.prod = document.getElementById('prod').value
+            st.qty = document.getElementById('qty').value
+            console.log(st);
+            product.push(st)
+            show()
+        }
+    </script>
+</body>
+
+</html>

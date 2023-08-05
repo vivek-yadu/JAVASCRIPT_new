@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <span id='payment'>
+
+    </span>
+
+
+    <div id="table">
+
+    </div>
+
+
+
+
+    <script>
+        show()
+
+
+
+        const selectOption = ["Kilometer", "Meter", "Centimeter", "Milimeter"]
+
+        function show() {
+
+            let str = '<tr>'
+            str += '<td><input type="text" id = "txt1" onkeyup= ""></td>'
+            str += '<td><input type="text" id = "txt2" onkeyup = ""></td>'
+            str += '</tr>'
+            str += '<tr>'
+            str += '<td><span id="DD"></span></td>'
+            str += '<td><span id="DD1"></span></td>'
+            str += '</tr>'
+
+            let header = "<th colspan = 2>Convert</th>"
+            let html = '<table>' + header + str + '</table>'
+            let div = document.getElementById('table')
+            div.innerHTML = html
+        }
+
+
+
+
+
+        showOption();
+
+        function showOption() {
+            let arr1 = [...selectOption]
+            let dd1 = makeDD('dd1', arr1, '', 'Select Option', 'payChange');
+            let div1 = document.getElementById('DD')
+            div1.innerHTML = dd1
+            let div2 = document.getElementById('DD1')
+            div2.innerHTML = dd1
+        }
+        //pay change function 
+
+        function payChange(elem) {
+            let selOpt = elem.value
+            const arr1 = [...selectOption]
+
+            let dd1 = makeDD("dd1", arr1, selOpt, 'Select Payment Method');
+            let json1 = selectOption.find((ele) => {
+                return ele == selOpt
+            })
+
+
+            let div1 = document.getElementById('payment')
+            div1.innerHTML = atr
+
+        }
+
+
+        //Making DD Funciton 
+        function makeDD(id, data, selectedVal, valOnTop, onchangeFn) {
+            let dataMap = data.map((opt) => {
+                if (opt == selectedVal)
+                    return '<option selected >' + opt + '</option>'
+                else
+                    return '<option>' + opt + '</option>'
+
+            });
+            let first = '<option value = \'\' selected  disabled  >' + valOnTop + '</option>'
+            let ddHtml = '<select id = \'' + id + '\'>';
+            if (onchangeFn != '')
+                ddHtml = '<select id = \'' + id + '\' onchange = \'' + onchangeFn + '(this)\'>';
+            ddHtml += first + dataMap.join('') + '</select>';
+            return ddHtml
+        }
+
+        function Kilometer() {
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: red;
+            color: white;
+        }
+        
+        .red {
+            background-color: rgb(226, 126, 126);
+        }
+        
+        .green {
+            background-color: rgb(138, 224, 138);
+        }
+        
+        .grey {
+            background-color: gray;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="details">
+
+
+    </div>
+    <!-- <button onclick="show()"></button> -->
+    <br>
+    <br>
+    <div id="filterDetails">
+
+    </div>
+    <div id="addnew">
+
+    </div>
+    <script>
+        let dataArr = [{
+            name: "Jack",
+            oldWeight: 65,
+            newWeight: 68
+        }, {
+            name: "Mary",
+            oldWeight: 55,
+            newWeight: 53
+        }, {
+            name: "Bob",
+            oldWeight: 71,
+            newWeight: 66
+        }, {
+            name: "Steve",
+            oldWeight: 62,
+            newWeight: 68
+        }, {
+            name: "James",
+            oldWeight: 81,
+            newWeight: 77
+        }, {
+            name: "Julia",
+            oldWeight: 52,
+            newWeight: 52
+        }, {
+            name: "Micheal",
+            oldWeight: 68,
+            newWeight: 68
+        }, {
+            name: "Bill",
+            oldWeight: 60,
+            newWeight: 61
+        }, {
+            name: "Sonny",
+            oldWeight: 61,
+            newWeight: 60
+        }, ]
+
+
+
+        let arr = []
+        let DDarr = []
+        for (let i = 40; i <= 100; i++) {
+            DDarr.push(i)
+        }
+
+        show();
+
+
+        function show() {
+            let newArr = dataArr.map(function(ele) {
+                let str = `<tr class ="${addcolor(ele)}">`
+                str += '<td>' + ele.name + '</td>'
+                str += '<td>' + ele.oldWeight + '</td>'
+                str += '<td>' + ele.newWeight + '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let header = '<th onclick=\'sort(0)\'>Name</th><th onclick=\'sort(1)\'>Old Weight</th><th onclick=\'sort(2)\'>New Weight</th>'
+            let a = "New Weight Between :<input type='text' placeholder='Enter Min wt' id = 'minwt'> <input type='text' placeholer='Enter max wt' id = 'maxwt'><br><button onclick=\'filterWt()\'>Filter</button> <br>"
+            let b = "<button onclick=\'addNewMember()\'>Add New Member </button>"
+            let html1 = '<table>' + a + b + header + newArr.join('') + '</table>'
+            console.log(b);
+            let div = document.getElementById('details')
+            div.innerHTML = html1
+        }
+
+        function sort(colno) {
+            if (colno == 0) {
+                dataArr.sort(sortName);
+            } else if (colno == 1) {
+                dataArr.sort(sortOldWeight)
+            } else {
+                dataArr.sort(sortNewWeight)
+            }
+            show()
+        }
+
+        function sortName(a, b) {
+            return -1 * a.name.localeCompare(b.name)
+        }
+
+        function sortOldWeight(st1, st2) {
+            return st2.oldWeight - st1.oldWeight
+        }
+
+        function sortNewWeight(st1, st2) {
+            return st2.newWeight - st1.newWeight
+        }
+
+        function addcolor(ele) {
+            if (ele.oldWeight > ele.newWeight) {
+                return "red"
+            } else if (ele.oldWeight < ele.newWeight) {
+                return "green"
+            } else {
+                return "grey"
+            }
+            show()
+        }
+
+
+        function filterWt() {
+            let min = document.getElementById('minwt').value;
+            let max = document.getElementById('maxwt').value;
+
+            arr = dataArr.filter((ele) => {
+                return ele.newWeight < max && ele.newWeight >= min
+            })
+
+            let arr1 = arr.map((e) => {
+                let newstr = `<tr class ="${addcolor(e)}">`
+                newstr += '<td>' + e.name + '</td>'
+                newstr += '<td>' + e.oldWeight + '</td>'
+                newstr += '<td>' + e.newWeight + '</td>'
+                newstr += '</tr>'
+                return newstr
+            })
+            console.log(arr)
+            let header = '<th onclick=\'sort(0)\'>Name</th><th onclick=\'sort(1)\'>Old Weight</th><th onclick=\'sort(2)\'>New Weight</th>'
+            let a = "New Weight Between :<input type='text' placeholder='Enter Min wt' id = 'minwt' value=" + min + "> <input type='text' placeholer='Enter max wt'  id = 'maxwt' value = " + max + "><br><button onclick=\'filterWt()\'>Filter</button><br>"
+            let b = "<button onclick=\'addNewMember()\'>Add New Member </button>"
+            let html1 = '<table>' + a + b + header + arr1.join('') + '</table>'
+            let div = document.getElementById('details')
+            div.innerHTML = html1
+        }
+
+
+
+        function addNewMember() {
+            let str = '<h1>Add New Member</h1>'
+            str += 'Name: <input type ="text" id = "name"><br>'
+            str += makeOldDropDown('oldweight', DDarr) + '<br>'
+            str += makeNewDropDown('newweight', DDarr) + '<br>'
+            str += '<button onclick=\'addNewPerson()\'>Add</button><br>'
+            let ele = document.getElementById('addnew');
+            ele.innerHTML = str;
+        }
+
+        function makeOldDropDown(id, arr) {
+            const arr2 = arr.map((e) => {
+                return '<option>' + e + '</option>'
+            })
+            console.log(arr2);
+            let st = "<option selected disabled>Select old Weight</option>"
+            let s = '<select id = \'' + id + '\'>' + st + arr2.join('') + '</select>'
+            return s
+        }
+
+        function makeNewDropDown(id, arr) {
+            const arr2 = arr.map((e) => {
+                return '<option>' + e + '</option>'
+            })
+            console.log(arr2);
+            let st = "<option selected disabled>Select New Weight</option>"
+            let s = '<select id = \'' + id + '\'>' + st + arr2.join('') + '</select>'
+            return s
+        }
+
+        function addNewPerson() {
+            let st = {}
+            st.name = document.getElementById('name').value
+            st.oldWeight = document.getElementById('oldweight').value
+            st.newWeight = document.getElementById('newweight').value
+            dataArr.push(st)
+            show();
+        }
+    </script>
+
+</body>
+
+</html>

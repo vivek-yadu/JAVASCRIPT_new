@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="text" alt="" id="txt1" placeholder="Enter Text" maxLength="">
+        <button onclick="">submit</button>
+    </div>
+
+    <select name="" id="dd01">
+   <option disabled selected> select</option>
+   <option value="1">JavaScript</option>
+   <option value="2">React</option>
+   <option value="3">Angular</option>
+</select>
+
+    <select name="" id="dd02">
+    <option value="">Select</option>
+    <option >JavaScript</option>
+    <option >React</option>
+    <option >Angular</option>
+
+    
+</select>
+    <button onclick="display()">display</button>
+
+
+
+    <script>
+        function display() {
+            let dd1 = document.getElementById('dd01');
+            console.log(dd1.value);
+            let dd2 = document.getElementById('dd02');
+            console.log(dd2.value);
+
+        }
+    </script>
+</body>
+
+
+</html>

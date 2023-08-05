@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    What do you know<br>
+    <div id="newcb"></div>
+    <script>
+        let cbValue = ["Mathematics", "English", "Physics", "Chemistry"]
+
+        document.getElementById('newcb').innerHTML = makeCheckBoxes("xyz", cbValue)
+
+        function makeCheckBoxes(id, arr) {
+            const arr1 = arr.map((val, index) => {
+
+
+                let s1 = '<input type="checkbox" <id = "' + id + index + '">' + val + '<br>'
+                return s1
+            });
+            return arr1.join('')
+        }
+    </script>
+
+</body>
+
+</html>

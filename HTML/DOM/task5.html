@@ -1,0 +1,167 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .table1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        
+        .td1 {
+            font-weight: bold;
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        .th1 {
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .like {
+            background-color: lightgreen;
+            color: black;
+        }
+        
+        .remove {
+            background-color: lightgray;
+            color: black;
+        }
+        
+        .dislike {
+            background-color: lightpink;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="rider">
+
+    </div>
+
+    <button onclick="show()">Riders</button>
+
+    <td class="col1"></td>
+    <td class="col1"></td>
+    <td class="col1"></td>
+
+    <script>
+        let riders = [{
+            rider: 'Jack',
+            store: 'Dominos'
+        }, {
+            rider: 'Bob',
+            store: 'McDonalds'
+        }, {
+            rider: 'Geroge',
+            store: 'Pizza Hut'
+        }, {
+            rider: 'Steve',
+            store: 'Burger King'
+        }]
+
+        function show() {
+            let s1 = showRider();
+            let s2 = feedbackShow();
+
+            let element = document.getElementById('rider')
+            element.innerHTML = s1 + s2;
+        }
+
+        function showRider() {
+            let arr1 = riders.map(function(ele) {
+                let str = `<tr class = "col1"><td class="td1 ">${ele.rider}</td><td class="td1 col1">${ele.store}</td>`
+                str += ' <td class = "col1"><button class = "like" onclick = like("' + ele.rider + '",true) > like </button><button class = "dislike" onclick =like("' + ele.rider + '",false)>dislike</button></td> '
+                str += '</tr>';
+                return str
+
+            })
+
+            let header = "<tr> <th class ='th1' > Rider </th> <th class ='th1' > Store </th> <th class ='th1'>  </th>  </tr > "
+            let html = '<table class="table1">' + header + arr1.join('') + '</table>'
+
+            return html
+        }
+
+        let feedback = [];
+
+        function feedbackShow() {
+            let fMap = feedback.map((ele) => {
+
+                let str = `<tr class = "col1"><td class="td1 ">${ele.rider}</td><td class="td1 col1">${ele.store}</td>`
+                str += '<td class = "col1 td1 ">' + ele.likes + '</td>'
+                str += '<td class = "col1 td1">' + ele.dislikes + '</td>'
+                str += '<td class = "td1 remove"><button class = "" onclick = remove("' + ele.rider + '")>Remove </button></td>'
+                str += '</tr>';
+                return str
+
+            })
+
+            let header = "<tr> <th class ='th1' > Rider </th> <th class ='th1' > Store </th> <th class ='th1'>Likes </th> <th class= 'th1'>DisLikes</th><th class ='th1'></th> </tr > "
+
+            let html
+            if (feedback.length == 0) {
+                html += '<h3>No Feedback has been received</h3>'
+            } else {
+                html = '<table class="table1">' + header + fMap.join('') + '</table>'
+            }
+            return html
+
+        }
+
+        function like(rider, islike) {
+            let r1 = feedback.find((st) => {
+                return st.rider == rider
+            })
+            if (r1) {
+                if (islike)
+                    r1.likes++
+                    else
+                        r1.dislikes++;
+            } else {
+                let rider1 = riders.find((st) => {
+                    return st.rider == rider
+                })
+                let item = {
+                    rider: rider1.rider,
+                    store: rider1.store,
+                    likes: 0,
+                    dislikes: 0
+                }
+
+
+                if (islike)
+                    item.likes = 1
+                else
+                    item.dislikes = 1
+
+                feedback.push(item)
+            }
+            console.log(feedback);
+            show();
+        }
+
+        function remove(rider) {
+            let index = feedback.findIndex((st) => {
+                return st.rider == rider
+            })
+            if (index >= 0) {
+                feedback.splice(index, 1);
+            }
+            show();
+        }
+    </script>
+</body>
+
+</html>

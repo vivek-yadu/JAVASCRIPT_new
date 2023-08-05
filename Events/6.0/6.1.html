@@ -1,0 +1,237 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+    </style>
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <span id='payment'>
+
+    </span>
+    <span id='call'></span>
+    <div id="tables">
+        <table>
+            <th colspan=2>Convert</th>
+            <tr id="row">
+                <td><input type="text" id="txt1" onkeyup=""></td>
+                <td> <input type="text" name="" id="showtext" placeholder=""></tr>
+            <tr>
+                <td><span id="DD"></span></td>
+                <td><span id="DD1"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const selectOption = ["Kilometer", "Meter", "Centimeter", "Milimeter"]
+        const val = "kmtokm"
+
+        function showChange(val) {
+            let str = '<tr>'
+            str += '<td><input type="text" id = "txt1"  onkeyup = \'' + val + '(this)\' </td>'
+            str += '<td>   <input type="text" name="" id="showtext" placeholder="">'
+            str += '</tr>'
+
+            // let header = "<th colspan = 2>Convert</th>"
+            let html = '<table>' + str + '</table>'
+            let div = document.getElementById('row')
+            div.innerHTML = html
+        }
+
+        showOptiondd1();
+
+        function showOptiondd1() {
+            let arr1 = [...selectOption]
+            let dd1 = makeDD('dd1', arr1, '', 'Select Option', 'display');
+            let div1 = document.getElementById('DD')
+            div1.innerHTML = dd1
+        }
+
+        function display() {
+            let n1 = document.getElementById('dd1')
+            let n2 = document.getElementById('dd2')
+            let con1 = n1.value
+            let con2 = n2.value
+            if (con1 == con2) {
+                showChange('kmtokm')
+            } else if (con1 != con2) {
+                if (con1 == 'Kilometer' && con2 == 'Meter') {
+                    showChange('kmtom')
+                } else if (con1 == 'Meter' && con2 == 'Kilometer') {
+                    showChange('mtokm')
+                } else if (con1 == 'Kilometer' && con2 == 'Centimeter') {
+                    showChange('kmtocm')
+                } else if (con1 == 'Kilometer' && con2 == 'Milimeter') {
+                    showChange('kmtomm')
+                } else if (con1 == 'Meter' && con2 == 'Meter') {
+                    showChange('mtocm')
+                } else if (con1 == 'Meter' && con2 == 'Centimeter') {
+                    showChange('mtocm')
+                } else if (con1 == 'Meter' && con2 == 'Milimeter') {
+                    showChange('mtomm')
+                } else if (con1 == 'Centimeter' && con2 == 'Milimeter') {
+                    showChange('mmtocm')
+                } else if (con1 == 'Centimeter' && con2 == 'Centimeter') {
+                    showChange('kmtokm')
+                } else if (con1 == 'Centimeter' && con2 == 'Kilometer') {
+                    showChange('cmtokm')
+                } else if (con1 == 'Centimeter' && con2 == 'Meter') {
+                    showChange('cmtom')
+                } else if (con1 == 'Milimeter' && con2 == 'Centimeter') {
+                    showChange('mmtocm')
+                } else if (con1 == 'Milimeter' && con2 == 'Meter') {
+                    showChange('mmtom')
+                }
+            }
+
+        }
+
+
+
+
+        showOptiondd2();
+
+        function showOptiondd2() {
+            let arr1 = [...selectOption]
+            let dd2 = makeDD('dd2', arr1, '', 'Select Option', 'display');
+
+            let div12 = document.getElementById('DD1')
+            div12.innerHTML = dd2
+
+        }
+
+
+
+
+        //Making DD Funciton 
+        function makeDD(id, data, selectedVal, valOnTop, onchangeFn) {
+            let dataMap = data.map((opt) => {
+                if (opt == selectedVal)
+                    return '<option selected >' + opt + '</option>'
+                else
+                    return '<option>' + opt + '</option>'
+
+            });
+            let first = '<option value = \'\' selected  disabled  >' + valOnTop + '</option>'
+            let ddHtml = '<select id = \'' + id + '\'>';
+            if (onchangeFn != '')
+                ddHtml = '<select id = \'' + id + '\' onchange = \'' + onchangeFn + '(this)\'>';
+            ddHtml += first + dataMap.join('') + '</select>';
+            return ddHtml
+        }
+
+
+
+        // km to km
+        function kmtokm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1);
+
+        }
+        // km to m
+        function kmtom() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) * (1000 / 1);
+        }
+
+        // m to km
+
+        function mtokm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (1000 / 1);
+        }
+
+
+        //cm to km
+        function cmtokm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (100000 / 1);
+
+        }
+        //mm to km
+
+        function mmtokm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (1000000 / 1);
+        }
+
+        //km to mm
+        function kmtomm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) * (1000000 / 1);
+        }
+        // km to cm
+        function kmtocm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) * (100000 / 1);
+
+        }
+
+        //m to cm 
+
+        function mtocm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) * (100 / 1);
+
+        }
+        //m to mm
+        function mtomm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) * (1000 / 1);
+
+        }
+        //cm to m 
+
+        function cmtom() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (100 / 1);
+
+        }
+        //cm to mm
+        function cmtomm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (1000 / 1);
+
+        }
+        //mm to m
+        function mmtom() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (1000 / 1);
+
+        }
+        //mm to cm
+        function mmtocm() {
+            let getdata = document.getElementById('txt1').value
+            document.getElementById('showtext').value = (getdata / 1) / (10 / 1);
+
+        }
+    </script>
+
+</body>
+
+</html>

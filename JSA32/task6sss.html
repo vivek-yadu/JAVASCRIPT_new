@@ -1,0 +1,125 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        td,
+        tr {
+            border: 1px solid black;
+            background-color: aqua;
+            border-collapse: collapse;
+        }
+        
+        .red {
+            background-color: rgb(204, 124, 124);
+        }
+        
+        table {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="details">
+
+
+    </div>
+
+
+    <script>
+        let productData = [{
+            "name": "Maggi",
+            "price": 25,
+            offers: ["Citi Credit Cards", "ICICI Card"]
+        }, {
+            "name": "Perk",
+            "price": 10,
+            offers: ["Axis Credit Cards", "PayTM"]
+        }, {
+            "name": "Gems",
+            "price": 15,
+            offers: ["SBI Card", "PhonePe", "PayTM"]
+        }, {
+            "name": "Lindt",
+            "price": 90,
+            offers: []
+        }, {
+            "name": "Nutties",
+            "price": 12,
+            offers: ["Citi Credit Cards "]
+        }, {
+            "name": "Pepsi",
+            "price": 15,
+            offers: ["PhonePe", "PayTM"]
+        }, {
+            "name": "Coca Cola",
+            "price": 15,
+            offers: ["SBI Card"]
+        }, {
+            "name": "Dairy Milk",
+            "price": 10,
+            offers: []
+        }]
+
+        showProduct()
+
+        function showProduct() {
+            let arr = productData.map((ele) => {
+                let str = '<tr > <td class = "red">Name :' + ele.name + "  " + "Perk Price :" + ele.price + '<br>'
+                str += '<ul id = "' + ele.name + '"><button onclick=\'showOffer("' + ele.name + '")\'>Show Offers</button>   </ul>'
+                str += '<br>'
+                str += '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let html = '<table>' + arr.join('') + '</table>'
+
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+
+        function showOffer(name) {
+            let arr = productData.find((ele) => {
+                if (ele.name == name) {
+                    return ele.offers
+                }
+            })
+            let arr1 = arr.offers
+            let newArr = arr1.map((ele) => {
+                str = '<tr > <td class = "red">Name :' + arr.name + "  " + "Perk Price :" + arr.price + '<br>'
+                str += '<ul id = "' + ele + '"><button onclick=\'showOffer("' + arr.name + '")\'>Show Offers</button>   </ul>'
+                str += '<br>'
+                str += '</td>'
+                str += '</tr>'
+            })
+
+
+        }
+
+        function hideOffers() {
+            let arr = productData.map((ele) => {
+                let str = '<tr > <td >Name :' + ele.name + "  " + "Perk Price :" + ele.price + '<br>'
+                str += '  <ul id = "' + ele.name + '"><button onclick=\'showOffer("' + ele.name + '")\'>Show Offers</button> </ul>'
+                str += '<br>'
+                str += '</td>'
+                str += '</tr>'
+                return str
+            })
+
+            let html = '<table>' + arr.join('') + '</table>'
+            console.log(html);
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: rgb(218, 109, 127);
+    }
+    
+    header {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(23, 34, 26);
+    }
+    
+    header nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    header nav .brand {
+        margin-left: 0%;
+        align-items: center;
+        width: 300px;
+        height: fit-content;
+        background-color: rgb(23, 34, 26);
+    }
+    
+    header nav .brand p {
+        font-size: 50px;
+    }
+    
+    header nav ul {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 5%;
+    }
+    
+    header nav ul li {
+        list-style: none;
+        margin: 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    a {
+        color: rgb(218, 109, 127);
+        text-decoration: none;
+    }
+    
+    main {
+        width: 100%;
+        height: 150%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        background-color: rgb(23, 34, 26);
+    }
+    
+    .main-div {
+        background-color: rgb(23, 34, 26);
+        display: flex;
+        height: 50%;
+        flex-direction: column;
+        justify-content: top;
+        align-items: center;
+    }
+    
+    .main-div div span {
+        width: 80%;
+        margin: auto;
+        height: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    button {
+        width: 30%;
+        height: 20%;
+        margin: 10px;
+        border: 2px solid rgb(227, 106, 126);
+        color: rgb(218, 109, 127);
+        font-size: 30px;
+        background-color: rgb(23, 34, 26);
+    }
+    
+    .main-content {
+        width: 100%;
+        height: 50%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Type {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        gap: 10%;
+        color: black;
+    }
+    
+    footer {
+        background-color: rgb(23, 34, 26);
+        height: 20%;
+    }
+    
+    footer .footer-nav ul {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 5%;
+    }
+    
+    footer .footer-nav ul li {
+        list-style: none;
+        margin: 30px;
+        font-size: 30px;
+        font-weight: 200;
+    }
+</style>
+
+<body>
+
+    <header>
+
+        <nav>
+            <div class="brand">
+                <p>MobileTech Demo Day</p>
+            </div>
+
+            <div>
+                <ul>
+                    <li>Mar 11-15th New Delhi</li>
+                </ul>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Event</a></li>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">Calender</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="main-div ">
+            <div>
+                <h1 style="margin: 5%; color:aliceblue; text-align:center; font-size:50px; "><em>See new Releases from MobileTech</em> </h1>
+                <p style="margin-bottom: 0; font-size:30px; color:aliceblue; text-align:center; "><em>Android, ios, Apple, watch, fitbit, alexa and all new demos. Enjoy the new <br>expriences from the mobile tech</em></p>
+                <span class="btn " style="height: 100%;">
+                    <button>Schedule</button>
+                    <button>Register</button>
+                </span>
+            </div>
+        </section>
+
+
+        <section class="main-content ">
+            <div class="Type ">
+                <div style="width: 30%; height:100%; ">
+                    <h2 style="margin: 50px; text-align:start; color:black; ">Schedule</h2>
+                    <img src="1.PNG " alt=" ">
+                    <figcaption style="font-weight: bold; margin:10px; color:black; ">Demo Day</figcaption>
+                    <p style="text-align: start; padding:10px; color:black; "><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+                </div>
+                <div style="width: 30%; height:100%; ">
+                    <h2 style="margin: 50px; text-align:start; color:black; ">Event </h2>
+                    <img src="2.PNG " alt=" ">
+                    <figcaption style="font-weight: bold; margin:10px; color:black; ">Demo Day</figcaption>
+                    <p style="text-align: start; padding:10px; color:black; "><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+                </div>
+                <div style="width: 30%; height:100%; ">
+                    <h2 style="margin: 50px; text-align:start;  color:black;"> Calender</h2>
+                    <img src="3.PNG " alt=" ">
+                    <figcaption style="font-weight: bold; margin:10px; color:black; ">Demo Day</figcaption>
+                    <p style="text-align: start; padding:10px; color:black; "><em>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi ut soluta dolore iure dolores, provident, sed,r veniam tempora commodi.</em></p>
+                </div>
+
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <nav class="footer-nav ">
+            <ul>
+                <li><a href="# ">Home</a></li>
+                <li><a href="# ">Event</a></li>
+                <li><a href="# ">Schedule</a></li>
+                <li><a href="# ">Calender</a></li>
+                <li><a href="# ">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .errMsg {
+            color: red;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    Name:<input type="text" id="txt1" onblur='check(this)'><br>
+    <br> Age: <input type="text" id="txt2" placeholder="" onblur='check(this)'>
+    <div id="d1"></div>
+
+    <br> City: <input type="text" id="txt3">
+    <br> Technology: <input type="text" id="txt4">
+
+    <button id="btn1">Submit</button>
+
+
+    <script>
+        let details = [{
+            "name": "Jack",
+            "age": 28,
+            "city": "London",
+            "tech": "Android"
+        }, {
+            "name": "Mary",
+            "age": 32,
+            "city": "Paris",
+            "tech": "React"
+        }, {
+            "name": "Bob",
+            "age": 35,
+            "city": "New York",
+            "tech": "Angular"
+        }, {
+            "name": "Steve",
+            "age": 26,
+            "city": "Delhi",
+            "tech": "Spring"
+        }]
+
+
+        function check(elem) {
+            let txtField = document.getElementById('txt2');
+            let txt = txtField.value;
+            console.log(txt);
+            let a = txt / 1
+            if (a <= 18) {
+                let errDiv = document.getElementById("d1");
+                errDiv.innerHTML = "Minimum age is 18"
+                errDiv.className = "errMsg"
+            } else {
+                let errDiv = document.getElementById("d1");
+                errDiv.innerHTML = ""
+                errDiv.className = ""
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

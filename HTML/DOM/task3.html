@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=, initial-scale=1.0">
+        <style>
+            table {
+                border: 1px solid black;
+                border-collapse: collapse;
+                margin-bottom: 10px;
+            }
+            
+            td {
+                font-weight: bold;
+                border: 1px solid black;
+                text-align: center;
+            }
+            
+            th {
+                background-color: black;
+                color: white;
+                border: 1px solid white;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            ul {
+                font-size: large;
+            }
+            
+            .indiaColor {
+                color: blue;
+            }
+            
+            .usaColor {
+                color: green;
+            }
+            
+            .franceColor {
+                color: red;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="peoples">
+
+        </div>
+        <button onclick="showPeople()">show</button>
+
+        <script>
+            let styleCountry = false;
+            let styleAge = false;
+            let people = [{
+                "name": "Jack",
+                "country": "USA",
+                "age": 35
+            }, {
+                "name": "Amit",
+                "country": "India",
+                "age": 38
+            }, {
+                "name": "Edward",
+                "country": "USA",
+                "age": 41
+            }, {
+                "name": "Vishal",
+                "country": "India",
+                "age": 30
+            }, {
+                "name": "Annie",
+                "country": "USA",
+                "age": 27
+            }, {
+                "name": "Nick",
+                "country": "France",
+                "age": 32
+            }, {
+                "name": "Francis",
+                "country": "France",
+                "age": 44
+            }, {
+                "name": "Preeti",
+                "country": "India",
+                "age": 25
+            }, {
+                "name": "Sophie",
+                "country": "France",
+                "age": 29
+            }, {
+                "name": "Harpreet",
+                "country": "India",
+                "age": 48
+            }, {
+                "name": "Bob",
+                "country": "USA",
+                "age": 21
+            }];
+
+
+            function showPeople() {
+                let arr1 = people.map((srt) => {
+                    let str = `<tr class = " ">
+                    <td>${srt.name}</td>
+                    <td class="">${srt.age}</td> 
+                    <td>${srt.country} </td>
+                        </tr>`
+                    return str
+                }).join('');
+
+                let header = "   <tr> <th> Name </th> <th> Age </th> <th> Country </th> </tr>"
+                let html = "<table>" + header + arr1 + "</table>"
+                console.log(html)
+                let element = document.getElementById('peoples');
+                element.innerHTML = html
+            }
+        </script>
+    </body>
+
+    </html>
+
+</body>
+
+</html>

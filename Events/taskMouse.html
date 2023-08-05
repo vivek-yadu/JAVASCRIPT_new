@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4 id="title" onclick="clicked(this)" onmouseover="mouseover(this)" onmouseout="mouseout(this)" onmousemove="mousemove(this)"> Checking Events</h4>
+    Text 1:<input type="text" id="txt1" onchange="change(this)" onkeydown=" keydown(this)" onkeypress="keypress(this)" onmouseover="mouseover(this)" onmouseout="mouseout(this)" onfocus="">
+    <br>
+    <button id="btn1" onclick="clicked(this)" onmouseover="mouseover(this)" onmouseout="mouseout(this)">
+    Button</button>
+    <br>
+
+    <select name="" id="dd1" onchange="change(this)" onfocus="focusin(this)" onblur="fouseout(this)">
+        <option value="">Apple</option>
+        <option value="">Aeroplane</option>
+        <option value="">Banana</option>
+        <option value="">BAt</option>
+        <option value="">Ball</option>
+        <option value="">Cat</option>
+    </select>
+
+    <script>
+        function change(elem) {
+            console.log("onchange", elem.id, event)
+        }
+
+        function clicked(elem) {
+            console.log("onclick", elem.id, event)
+        }
+
+        function mouseover(elem) {
+            console.log("onmouseover", elem.id, event)
+        }
+
+        function mouseout(elem) {
+            console.log("onmouseout", elem.id, event)
+        }
+
+        function mousemove(elem) {
+            console.log("onmousemove", elem.id, event)
+        }
+
+        function keydown(elem) {
+            console.log("onkeydown", elem.id, event)
+        }
+
+        function focusin(elem) {
+            console.log("onfousin", elem.id, event)
+        }
+
+        function keyup(elem) {
+            console.log("onkeyup", elem.id, event)
+        }
+
+        function keypress(elem) {
+            console.log("onkeyup", elem.id, event)
+        }
+    </script>
+</body>
+
+</html>

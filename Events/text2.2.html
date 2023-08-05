@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="txt1" name="" placeholder="number1" onkeyup="num1(this)">+
+    <input type="text" id="txt2" name="" placeholder="number2" onkeyup="num1(this)"> =
+    <input type="text" name="" id="showtext" placeholder="answer">
+
+
+
+    <script>
+        function num1() {
+            let getdata = document.getElementById('txt1').value
+            let getdata1 = document.getElementById('txt2').value
+
+            if ((getdata >= 'a' && getdata <= 'z') || (getdata >= 'A' && getdata <= 'Z') || (getdata1 >= 'a' && getdata1 <= 'z')) {
+
+                document.getElementById('showtext').value = "input number is incorrect ";
+
+            } else {
+
+                document.getElementById('showtext').value = (getdata / 1) + (getdata1 / 1);
+            }
+            console.log(getdata1);
+        }
+    </script>
+
+</body>
+
+</html>

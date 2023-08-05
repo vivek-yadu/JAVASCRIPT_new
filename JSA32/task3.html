@@ -1,0 +1,261 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: black;
+            color: white;
+        }
+        
+        table {
+            width: 20%;
+            text-align: center;
+        }
+        
+        .btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="form">
+        <button onclick="addPerson()">add Person</button>
+    </div>
+
+    <div id="details">
+
+    </div>
+
+
+    <script>
+        let newArr = [{
+            name: "Jack",
+            age: 28,
+            city: "London",
+            tech: "Android"
+        }, {
+            name: "Mary",
+            age: 32,
+            city: " Paris",
+            tech: "React"
+        }, {
+            name: "Bob ",
+            age: 35,
+            city: "New York",
+            tech: "Angular"
+        }, {
+            name: "Steve",
+            age: 26,
+            city: "Delhi",
+            tech: "Spring"
+        }]
+
+
+
+        function show() {
+            let arr = newArr.map((e) => {
+                let str = '<tr>'
+                str += '<td>' + e.name + '</td>'
+                str += '<td>' + e.age + '</td>'
+                str += '<td>' + e.city + '</td>'
+                str += '<td>' + e.tech + '</td>'
+                str += '</tr>'
+                return str
+            })
+            let html = '<table>' + arr.join('') + '</table>'
+            console.log(html)
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+
+
+
+
+        var cities = ['London', 'Paris', 'Delhi', 'New York'];
+        let techs = ['Android', 'React', 'Angular', 'Spring', 'JavaScript']
+
+        //showing table
+        function addPerson() {
+            let str = 'Name: <input type = "text" id ="name"><br>'
+            str += 'Age: <input type = "number" id = "age" ><br>'
+            str += makeCityDD('city', cities, 'select city ', '') + '<br>'
+            str += makeTechDD('tech', techs, 'select Tech', '') + '<br>'
+            str += '<button onclick=\'addNewPerson()\'>Add New Person </button>'
+            str += '<button onclick=\'remove()\'>remove</button><br>'
+            str += '<button onclick = \'manageCities()\'>Manages City</button>'
+            str += '<button onclick=\'managesTechs()\'>Manage Tech</button>'
+            let arr = newArr.map((e) => {
+                let a = '<tr>'
+                a += '<td>' + e.name + '</td>'
+                a += '<td>' + e.age + '</td>'
+                a += '<td>' + e.city + '</td>'
+                a += '<td>' + e.tech + '</td>'
+                a += '</tr>'
+                return a
+            })
+            let html = '<table>' + arr.join('') + '</table>'
+
+            let div = document.getElementById('form');
+            div.innerHTML = str + html
+        }
+
+
+        ///////managing cities 
+
+        function manageCities() {
+            let arr = cities.map((e) => {
+                let str = '<tr>'
+                str += '<td id = "city">' + e + '</td>'
+                str += '<td><button onclick=\'removecity()\'>Remove</button></td>'
+                str += '</tr>'
+                return str
+            })
+            let a = 'City: <input type = "text" id = "newcity"><br>'
+            a += '<button onclick =\'addNewCity()\'>add</button><br>'
+            let showTable = '<button onclick=\'addPerson()\'>show table</button>'
+            let html = '<table>' + arr.join('') + '</table><br>'
+            console.log(html)
+            let element = document.getElementById('form')
+            element.innerHTML = a + html + showTable
+        }
+
+        function addNewCity() {
+            let name = document.getElementById('newcity').value
+            cities.push(name)
+            manageCities()
+        }
+
+        function removecity() {
+            let name = document.getElementById('city').value
+            let idx = cities.findIndex((ele) => {
+                return ele == name
+            })
+            cities.splice(idx, 1)
+            manageCities();
+        }
+
+
+
+
+
+        ////////////////////////////////manageing Technologies;
+
+        function managesTechs() {
+            let arr = techs.map((e) => {
+                let str = '<tr>'
+                str += '<td id = "tech">' + e + '</td>'
+                str += '<td><button onclick=\'removetech()\'>Remove</button></td>'
+                str += '</tr>'
+                return str
+            })
+            let a = 'Tech: <input type = "text" id = "newtech"><br>'
+            a += '<button onclick =\'addNewTech()\'>add</button><br>'
+            let showTable = '<button onclick=\'addPerson()\'>show table</button>'
+            let html = '<table>' + arr.join('') + '</table><br>'
+            console.log(html)
+            let element = document.getElementById('form')
+            element.innerHTML = a + html + showTable
+        }
+
+        function addNewTech() {
+            let name = document.getElementById('newtech').value
+            techs.push(name)
+            managesTechs()
+        }
+
+        function removetech() {
+            let name = document.getElementById('tech').value
+            let idx = techs.findIndex((ele) => {
+                return ele == name
+            })
+            console.log(idx);
+            techs.splice(idx, 1)
+            managesTechs();
+        }
+        //////////////////////////////////////////////////////Drop Dwons /////////////////// drop Downs/////////////////////////////////////////////
+
+        function makeCityDD(id, arr, first, selValue) {
+            var arrCity = arr.map((ele) => {
+                if (ele == selValue)
+                    return '<option selected>' + ele + '</option>'
+                else
+                    return '<option>' + ele + '</option>'
+            });
+            let header = '<option disabled>' + first + '</option>'
+
+            let s1 = '<select id = \'' + id + '\'>' + header + arrCity.join('') + '</select>'
+
+            return s1;
+        }
+
+
+
+        function makeTechDD(id, arr, first, selValue) {
+            var arrTech = arr.map((ele) => {
+                if (ele == selValue)
+                    return '<option selected>' + ele + '</option>'
+                else
+                    return '<option>' + ele + '</option>'
+            });
+            let header = '<option disabled>' + first + '</option>'
+            let s1 = '<select id = \'' + id + '\'>' + header + arrTech.join('') + '</select>'
+            return s1;
+        }
+
+
+        ////////////////////////////////////////Adding new person
+
+        function addNewPerson() {
+            let name = document.getElementById('name').value
+            let idx = newArr.findIndex((st) => {
+                return st.name == name;
+            })
+
+            if (idx >= 0) {
+                alert("This name already exists ")
+            } else {
+                let st = {}
+                st.name = document.getElementById('name').value
+                st.age = document.getElementById('age').value
+                st.city = document.getElementById('city').value
+                st.tech = document.getElementById('tech').value
+                newArr.push(st);
+            }
+            show()
+        }
+
+        /////////////////////////////////////////////////REmove persons 
+
+        function remove() {
+            let nam = document.getElementById('name').value
+            let idx = newArr.findIndex((e) => {
+                return e.name == nam
+            })
+
+            if (idx >= 0) {
+                newArr.splice(idx, 1)
+
+            } else {
+                alert("name doesn't found!!!")
+            }
+            show();
+        }
+    </script>
+</body>
+
+</html>

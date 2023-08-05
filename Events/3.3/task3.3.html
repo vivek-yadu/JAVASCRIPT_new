@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <input type="text" id="txt" placeholder=" No special Characters" onkeyup="check(this)">
+    <input type="text" id="ans">
+
+    <script>
+        function check() {
+
+            let getdata = document.getElementById('txt').value
+
+            let newstr = ''
+            for (let i = 0; i < getdata.length; i++) {
+                if ((getdata[i] >= 'a' && getdata[i] <= 'z') || (getdata[i] >= 'A' && getdata[i] <= 'Z') || (getdata[i] >= '0' && getdata[i] <= '9')) {
+                    newstr += getdata[i]
+                } else {
+                    newstr += ''
+                }
+            }
+
+            document.getElementById('ans').value = newstr
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .red {
+            background-color: rgb(231, 173, 221);
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        div {
+            background-color: rgb(142, 210, 237);
+            width: 400px;
+        }
+        
+        .white {
+            background-color: aliceblue;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Product Details</h1>
+    <div id="details">
+
+
+    </div>
+
+
+    <script>
+        let productData = [{
+            "name": "Maggi",
+            "price": 25,
+            offers: ["Citi Credit Cards", "ICICI Card"]
+        }, {
+            "name": "Perk",
+            "price": 10,
+            offers: ["Axis Credit Cards", "PayTM"]
+        }, {
+            "name": "Gems",
+            "price": 15,
+            offers: ["SBI Card", "PhonePe", "PayTM"]
+        }, {
+            "name": "Lindt",
+            "price": 90,
+            offers: []
+        }, {
+            "name": "Nutties",
+            "price": 12,
+            offers: ["Citi Credit Cards "]
+        }, {
+            "name": "Pepsi",
+            "price": 15,
+            offers: ["PhonePe", "PayTM"]
+        }, {
+            "name": "Coca Cola",
+            "price": 15,
+            offers: ["SBI Card"]
+        }, {
+            "name": "Dairy Milk",
+            "price": 10,
+            offers: []
+        }]
+
+        var n1 = ""
+
+        show()
+
+        function show() {
+            let arr = productData.map((ele) => {
+                if (ele.name == n1) {
+                    showOffer(ele.name)
+                } else {
+                    showProduct()
+                }
+            })
+        }
+
+
+        function showProduct() {
+            let arr = productData.map((ele) => {
+                str = '<div  class = "blue"  style ="border: 1px solid black;"  id = "' + ele.name + '">Name :' + ele.name + "  " + "Perk Price :" + ele.price + '<br>'
+                str += '<button  onclick=\'showOffer("' + ele.name + '")\'>Show Offers</button>   '
+                str += '<br>'
+                str += '</div>'
+                return str
+
+            })
+            let html = arr.join('')
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+
+
+
+        function showOffer(name) {
+            hideOffers()
+            let arr = productData.find((ele) => {
+                if (ele.name == name) {
+                    return ele.offers
+                }
+            })
+
+            let arr1 = arr.offers
+            let newArr
+            let at
+            if (arr1.length != 0) {
+                let no = arr1.length
+                newArr = arr1.map((ele) => {
+                    let str = '<p>' + ele + '</p>'
+                    return str
+                })
+                at = '<div  class = "red"  style ="border: 1px solid black;" id = "' + arr.name + '">Name :' + arr.name + "  " + "Perk Price :" + arr.price + '<br><br>'
+                at += '<div class = "red" >' + no + ' Offers' + newArr.join('') + '<button  onclick=\'hideOffers()\'>Hide Offers</button> </div>'
+            } else {
+                at = '<div  style ="border: 1px solid black;"  class = "red"  id = "' + arr.name + '">Name :' + arr.name + "  " + "Perk Price :" + arr.price + '<br><br>'
+                at += '<div class = "red">No offers<br>' + '<button  onclick=\'hideOffers(' + name + ')\'>Hide Offers</button></div>'
+
+            }
+
+            let elements = document.getElementById(name)
+            elements.innerHTML = at
+        }
+
+        function hideOffers() {
+            let arr = productData.map((ele) => {
+                let str = '<div  style ="border: 1px solid black;" id = "' + ele.name + '">Name :' + ele.name + "  " + "Perk Price :" + ele.price + '<br>'
+                str += '  <button onclick=\'showOffer("' + ele.name + '")\'>Show Offers</button> '
+                str += '<br>'
+                str += '</div>'
+                return str
+            })
+            let html = arr.join('')
+            console.log(html);
+            let element = document.getElementById('details')
+            element.innerHTML = html
+        }
+    </script>
+</body>
+
+</html>
